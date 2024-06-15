@@ -34,6 +34,7 @@ schema_view = get_schema_view(
         contact=openapi.Contact(email="admin@careersbucket.com"),
         license=openapi.License(name="Career's Bucket License"),
     ),
+    url='https://the-true-vocation-sspr.vercel.app/',
     public=True,
     permission_classes=(permissions.AllowAny,),
 )
