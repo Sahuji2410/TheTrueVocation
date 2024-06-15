@@ -1,0 +1,17 @@
+<!-- templates/jobdescription_detail.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{{ job_description.title }}</h1>
+  <p>Company: {{ job_description.company_name }}</p>
+  <p>Location: {{ job_description.location }}</p>
+  <p>Job Type: {{ job_description.job_type.name }}</p>
+  <p>Description: {{ job_description.description }}</p>
+  <p>Requirements: {{ job_description.requirements }}</p>
+  <p>Salary: {{ job_description.salary }}</p>
+  <p>Posted By: {{ job_description.posted_by.username }}</p>
+  <p>URL: <a href="{{ job_description.url }}">{{ job_description.url }}</a></p>
+  <a href="{% url 'jobdescription_update' job_description.pk %}">Edit</a> |
+  <a href="{% url 'jobdescription_delete' job_description.pk %}">Delete</a> |
+  <a href="{% url 'jobdescription_list' %}">Back to list</a>
+{% endblock %}

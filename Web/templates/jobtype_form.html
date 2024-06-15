@@ -1,0 +1,16 @@
+<!-- templates/jobtype_form.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{% if job_type %}Edit{% else %}Create{% endif %} Job Type</h1>
+  <form method="post">
+    {% csrf_token %}
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="{% if job_type %}{{ job_type.name }}{% endif %}">
+    <button type="submit">{% if job_type %}Update{% else %}Create{% endif %}</button>
+  </form>
+  {% if error %}
+    <p style="color: red;">{{ error }}</p>
+  {% endif %}
+  <a href="{% url 'jobtype_list' %}">Back to list</a>
+{% endblock %}

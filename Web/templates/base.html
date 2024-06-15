@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}    
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+  <title>{% block title %}CareersBuckets{% endblock %}</title>
+  <style>
+    body {
+      margin: 0;
+      background: #9e9ed157;
+      font-family: Arial, sans-serif;
+      display: flex;
+    }
+
+    .SideNavbar {
+      width: 200px;
+      background: #fff;
+      transition: width 0.1s ease, margin-left 0.1s ease;
+      border-bottom-right-radius: 41px;
+      border-top-right-radius: 41px;
+      height: 100vh; /* Make it full height */
+      position: fixed; /* Fix the position */
+      top: 0; /* Align it to the top */
+      left: 0; /* Align it to the left */
+      z-index: 1000; /* Ensure it stays on top */
+      display: flex;
+      flex-direction: column;
+    }
+
+    .SideNavbar_container {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .Job_type {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-top-right-radius: 41px;
+      border-bottom-right-radius: 41px;
+    }
+
+    .Job_type a {
+      width: 85%;
+      background: #7898d454;
+      color: black;
+      padding: 10px;
+      margin-bottom: 10px;
+      font-size: 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.3s;
+    }
+
+    .Job_type a:hover {
+      background-color: #226fc3;
+      color: white;
+    }
+
+    .job-image {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+    }
+
+    .job-image img {
+      width: 100%;
+      border-bottom-right-radius: 41px;
+    }
+
+    .content {
+      margin-left: 200px; /* Offset content by sidebar width */
+      flex-grow: 1; /* Ensures content takes the remaining space */
+      padding: 5px; /* Optional padding */
+    }
+
+    .toggle-sidebar {
+      display: none; /* Hide the toggle button by default */
+    }
+
+    .side_button {
+      display: flex;
+      justify-content: space-between; /* Aligns the button to the left */
+      padding: 5px; /* Optional: Add padding if needed */
+    }
+
+    @media (max-width:600px) {
+      .SideNavbar {
+        margin-left: -200px; /* Shift sidebar off-screen by default */
+        width: 170px;
+      }
+      .SideNavbar.show-sidebar {
+        margin-left: 0; /* Bring sidebar on-screen */
+      }
+
+      .toggle-sidebar {
+        display: block; /* Show the toggle button */
+        width: 70px;
+        border-radius: 23px;
+        font-size: 13px;
+        background: #007bff;
+        color: white;
+        border: none;
+      }
+
+      .content {
+        margin-left: 0; /* Reset content margin on small screens */
+      }
+    }
+
+    /* Hide the logo by default */
+    .logo {
+      display: none;
+    }
+  
+    /* Show the logo on smaller screens */
+    @media (max-width:600px) {
+      .logo {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="SideNavbar">
+    <div class="SideNavbar_container">
+      <div class="Job_type">
+        {% block JobTypes %}
+        <!-- Links for job types go here -->
+        {% endblock %}
+      </div>
+    </div>
+    <div class="job-image">
+      <img src="{% static 'images/jobImage.png' %}" alt="Job" />
+    </div>
+  </div>
+
+  <div class="content">
+    <main>
+      <div class="side_button"> 
+        <div class="logo">
+          <img src="{% static 'images/logo.png' %}" alt="Logo" />
+        </div>
+        <button class="btn px-3 py-2 open-btn me-2 d-md-none toggle-sidebar" id="slipbtn">Job Types</button>
+      </div>
+      {% block content %}
+      {% endblock %}
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+        $('.toggle-sidebar').click(function(){
+            $('.SideNavbar').toggleClass('show-sidebar');
+        });
+
+        $('body').click(function(event) {
+            if (!$(event.target).closest('.SideNavbar, .toggle-sidebar').length) {
+                $('.SideNavbar').removeClass('show-sidebar');
+            }
+        });
+    });
+  </script>
+</body>
+</html>

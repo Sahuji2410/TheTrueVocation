@@ -1,0 +1,16 @@
+<!-- templates/jobdescription_list.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Job Descriptions</h1>
+  <ul>
+    {% for job_description in job_descriptions %}
+      <li>
+        <a href="{% url 'jobdescription_detail' job_description.pk %}">{{ job_description.title }}</a>
+        (<a href="{% url 'jobdescription_update' job_description.pk %}">Edit</a>,
+        <a href="{% url 'jobdescription_delete' job_description.pk %}">Delete</a>)
+      </li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'jobdescription_create' %}">Create new job description</a>
+{% endblock %}

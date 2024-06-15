@@ -1,0 +1,16 @@
+<!-- templates/jobtype_list.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Job Types</h1>
+  <ul>
+    {% for job_type in job_types %}
+      <li>
+        <a href="{% url 'jobtype_detail' job_type.pk %}">{{ job_type.name }}</a>
+        (<a href="{% url 'jobtype_update' job_type.pk %}">Edit</a>,
+        <a href="{% url 'jobtype_delete' job_type.pk %}">Delete</a>)
+      </li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'jobtype_create' %}">Create new job type</a>
+{% endblock %}

@@ -1,0 +1,12 @@
+<!-- templates/jobtype_confirm_delete.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Delete Job Type</h1>
+  <p>Are you sure you want to delete "{{ job_type.name }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirm</button>
+  </form>
+  <a href="{% url 'jobtype_list' %}">Cancel</a>
+{% endblock %}
