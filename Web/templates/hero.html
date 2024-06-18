@@ -4,7 +4,7 @@
 {% block JobTypes %}
  
   <div class="logo_sidebar">
-    <img src="{% static '' %}" alt="Job" />
+    <!-- <img src="{% static '' %}" alt="Job" /> -->
     <p>Job Types</p>
   </div>
   {% for job_type in job_types %}
@@ -14,7 +14,12 @@
   {% endfor %}
   
 {% endblock %}
-
+{% block dynamic_image_content %}
+<div class="job-image">
+    <!-- <img src="{% static 'images/jobImage.png' %}" alt="Job" /> -->
+    <img src="{{ first_image.image.url }}" alt="Job"  />
+</div>
+{% endblock %}
 {% block content %}
 <style>
     .logo_sidebar{
@@ -260,7 +265,8 @@
                     {% if job_description.company_picture %}
                         <img src="{{ job_description.company_picture.url }}" alt="Company Logo" />
                     {% else %}
-                        <img src="{% static 'images/jobImage.png' %}" alt="Default Job Image" />
+                        <!-- <img src="{% static 'images/jobImage.png' %}" alt="Default Job Image" /> -->
+                        <img src="{{ first_image.image.url }}"  alt="Default Job Image" />
                     {% endif %}
                 </div>
                 <div class="job-details">

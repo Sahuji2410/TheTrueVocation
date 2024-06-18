@@ -4,6 +4,7 @@ from .views import (
     JobTypeListView, JobTypeDetailView, JobTypeCreateView, JobTypeUpdateView, JobTypeDeleteView,
     JobDescriptionListView, JobDescriptionDetailView, JobDescriptionCreateView, JobDescriptionUpdateView, JobDescriptionDeleteView
 )
+from .views import *
 
 urlpatterns = [
     # JobType URLs
@@ -23,3 +24,14 @@ urlpatterns = [
     path('jobdescriptions/<int:pk>/update/', JobDescriptionUpdateView.as_view(), name='jobdescription_update'),
     path('jobdescriptions/<int:pk>/delete/', JobDescriptionDeleteView.as_view(), name='jobdescription_delete'),
 ]
+
+Add_data_to_db_urlpatterns = [
+    path('add-user/', add_user, name='add_user'),
+    path('add-job-type/', add_job_type, name='add_job_type'),
+    path('add-job-description/', add_job_description, name='add_job_description'),
+    path('add-job-announcement/', add_job_announcement, name='add_job_announcement'),
+    path('add-dynamic-image/', add_dynamic_image, name='add_dynamic_image'),
+    path('dynamic-images/', dynamic_image_list, name='dynamic_image_list'),
+    path('delete-dynamic-image/<int:image_id>/', delete_dynamic_image, name='delete_dynamic_image'),
+]
+urlpatterns += Add_data_to_db_urlpatterns

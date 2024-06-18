@@ -138,9 +138,9 @@
         {% endblock %}
       </div>
     </div>
-    <div class="job-image">
-      <img src="{% static 'images/jobImage.png' %}" alt="Job" />
-    </div>
+    {% block dynamic_image_content %}
+    {% endblock %}
+
   </div>
 
   <div class="content">

@@ -88,3 +88,9 @@ class jobAnnouncments(models.Model):
 
     def __str__(self):
         return self.announment_title
+    
+class DynamicImage(models.Model):
+    image = models.ImageField("Dynamic Image(static)",upload_to='dynamic_images/',null=True,blank=True)
+
+    def __str__(self):
+        return f"Dynamic Image {self.id}"

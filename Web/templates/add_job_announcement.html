@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Job Announcement</title>
+</head>
+<body>
+    <h2>Add Job Announcement</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label>Announcement Title:</label><br>
+        <input type="text" name="announment_title"><br>
+        <label>Description:</label><br>
+        <textarea name="description"></textarea><br>
+        <label>YouTube Link:</label><br>
+        <input type="url" name="youtube_link"><br>
+        <button type="submit">Add Job Announcement</button>
+    </form>
+</body>
+</html>
