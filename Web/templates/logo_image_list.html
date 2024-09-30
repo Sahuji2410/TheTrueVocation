@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>logo Images</title>
+</head>
+<body>
+    <h2>logo Images</h2>
+    <a href="{% url 'add_logo_image' %}">Add New logo Image</a>
+    <ul>
+        {% for image in images %}
+            <li>
+                <img src="{{ image.image.url }}" alt="logo Image" style="width: 150px; height: auto;"><br>
+                <form method="post" action="{% url 'delete_logo_image' image.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

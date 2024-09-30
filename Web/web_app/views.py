@@ -42,6 +42,11 @@ class JobTypeDetailView(View):
         first_image = images.first()
         # Extract video ID from youtube_link
         youtube_link = other_context.youtube_link
+        for job_description in job_descriptions:
+            if job_description.url:
+                print(f"url for apply button :---------------->{job_description.url}")
+            else:
+                print(f"no---------------------------")
         match = re.search(r"\bv=([^&]+)", youtube_link)  # Regular expression to extract video ID
         if match:
             video_id = match.group(1)
@@ -283,3 +288,22 @@ def delete_dynamic_image(request, image_id):
     image = get_object_or_404(DynamicImage, id=image_id)
     image.delete()
     return redirect('dynamic_image_list')
+
+def add_logo_image(request):
+    if request.method == 'POST':
+        image = request.FILES.get('image')
+        
+        logo_image = LogoImage(image=image)
+        logo_image.save()
+        
+        return redirect('logo_image_list')
+    return render(request, 'add_logo_image.html')
+
+def logo_image_list(request):
+    images = LogoImage.objects.all()
+    return render(request, 'logo_image_list.html', {'images': images})
+
+def delete_logo_image(request, image_id):
+    image = get_object_or_404(LogoImage, id=image_id)
+    image.delete()
+    return redirect('logo_image_list')

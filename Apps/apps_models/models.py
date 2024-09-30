@@ -94,3 +94,9 @@ class DynamicImage(models.Model):
 
     def __str__(self):
         return f"Dynamic Image {self.id}"
+    
+class LogoImage(models.Model):
+    image = models.ImageField("Logo Image(static)",upload_to='Logo_images/',null=True,blank=True)
+
+    def __str__(self):
+        return f"Logo Image {self.id}"

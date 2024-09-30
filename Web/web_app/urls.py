@@ -33,5 +33,7 @@ Add_data_to_db_urlpatterns = [
     path('add-dynamic-image/', add_dynamic_image, name='add_dynamic_image'),
     path('dynamic-images/', dynamic_image_list, name='dynamic_image_list'),
     path('delete-dynamic-image/<int:image_id>/', delete_dynamic_image, name='delete_dynamic_image'),
+    path('logo-images/', logo_image_list, name='logo_image_list'),
+    path('delete-logo-image/<int:image_id>/', delete_logo_image, name='delete_logo_image'),
 ]
 urlpatterns += Add_data_to_db_urlpatterns
